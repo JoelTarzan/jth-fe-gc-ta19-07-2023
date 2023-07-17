@@ -1,0 +1,16 @@
+<div class="container my-5">
+    <h1 class="my-5">Login</h1>
+    <div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control bg-dark text-white" id="email" [(ngModel)]="email">
+            <div class="form-text" *ngIf="email == ''">Porfavor ingrese un email</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control bg-dark text-white" id="password" [(ngModel)]="password">
+            <div class="form-text" *ngIf="password == ''">Porfavor ingrese una contraseña</div>
+        </div>
+        <button type="submit" class="btn btn-dark my-3" (click)="login()">Login</button>
+    </div>
+</div>

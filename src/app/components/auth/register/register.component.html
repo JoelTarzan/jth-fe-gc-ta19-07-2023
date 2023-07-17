@@ -1,0 +1,26 @@
+<div class="container my-5">
+    <h1 class="my-5">Registro</h1>
+    <div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control bg-dark text-white" id="name" [(ngModel)]="name">
+            <div class="form-text" *ngIf="name == ''">Porfavor ingrese un nombre</div>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control bg-dark text-white" id="email" [(ngModel)]="email">
+            <div class="form-text" *ngIf="email == ''">Porfavor ingrese un email</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Contraseña</label>
+            <input type="password" class="form-control bg-dark text-white" id="password" [(ngModel)]="password">
+            <div class="form-text" *ngIf="password == ''">Porfavor ingrese una contraseña</div>
+        </div>
+        <div class="mb-3">
+            <label for="repeatedPassword" class="form-label">Repetir contraseña</label>
+            <input type="password" class="form-control bg-dark text-white" id="repeatedPassword" [(ngModel)]="repeatedPassword">
+            <div class="form-text text-danger" *ngIf="password != repeatedPassword">Las contraseñas no coinciden</div>
+        </div>
+        <button type="submit" class="btn btn-dark my-3" (click)="register()">Registrarse</button>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="container my-5">
+    <h2 class="my-4">New Character</h2>
+    <div class="mb-3">
+        <label for="id" class="form-label">Id</label>
+        <input type="number" class="form-control" id="id" [(ngModel)]="character.id">
+    </div>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" [(ngModel)]="character.name">
+    </div>
+    <div class="mb-3">
+        <label for="status" class="form-label">Status</label>
+        <input type="text" class="form-control" id="status" [(ngModel)]="character.status">
+    </div>
+    <div class="mb-3">
+        <label for="species" class="form-label">Species</label>
+        <input type="text" class="form-control" id="species" [(ngModel)]="character.species">
+    </div>
+    <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <input type="text" class="form-control" id="gender" [(ngModel)]="character.gender">
+    </div>
+    <div class="mb-3">
+        <label for="origin" class="form-label">Origin</label>
+        <input type="text" class="form-control" id="origin" [(ngModel)]="character.origin">
+    </div>
+    <div class="mb-3">
+        <label for="location" class="form-label">Location</label>
+        <input type="text" class="form-control" id="location" [(ngModel)]="character.location">
+    </div>
+    <div class="mb-3">
+        <label for="image" class="form-label">Image link</label>
+        <input type="text" class="form-control" id="image" [(ngModel)]="character.image">
+    </div>
+    <button class="btn btn-primary" (click)="create()">Create</button>
+</div>

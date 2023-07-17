@@ -1,0 +1,19 @@
+<div class="container">
+
+    <div class="m-2 d-flex justify-content-center">
+        <a class="btn btn-primary" routerLink="/create">Create new character</a>
+    </div>
+
+    <div class="d-flex flex-wrap">
+
+        <div class="card mx-auto my-2" *ngFor="let character of characters">
+            <img src="{{character.image}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <p class="card-text">{{character.name}}</p>
+                <a class="btn btn-warning w-100" [routerLink]="['/details', character.id]">See more</a>
+            </div>
+        </div>
+
+    </div>
+
+</div>
