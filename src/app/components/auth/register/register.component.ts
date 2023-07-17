@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -7,21 +10,40 @@ import { Component } from '@angular/core';
 })
 export class RegisterComponent {
 
-  name: string = '';
-  email: string = '';
-  password: string = '';
-  repeatedPassword: string = '';
+  registerForm: FormGroup;
+
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private formBuilder: FormBuilder
+    ) {
+
+      this.registerForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required],
+        repeatedPassword: ['', Validators.required]
+      }, {validator: this.passwordMatchValidator});
+
+  }
 
   register(): void {
-    
-    if (this.name == '' || this.email == '' || this.password == '' || this.repeatedPassword != this.password) {
-      alert('Porfavor complete todos los campos y asegurese de que las contraseñas coinciden');
+    const { email, password } = this.registerForm.value;
 
+    this.authService.register({ email, password })
+    .then(response => {
+      this.router.navigate(['/login']);
+    })
+    .catch(error => console.log(error));
+  }
+
+  passwordMatchValidator(formGroup: FormGroup) {
+    const password = formGroup.get('password')?.value;
+    const repeatedPassword = formGroup.get('repeatedPassword')?.value;
+
+    if (password !== repeatedPassword) {
+      return { passwordMismatch: true };
     } else {
-      this.name = '';
-      this.email = '';
-      this.password = '';
-      this.repeatedPassword = '';
+      return null;
     }
   }
 }

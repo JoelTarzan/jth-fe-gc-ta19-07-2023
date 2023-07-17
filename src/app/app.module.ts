@@ -9,7 +9,7 @@ import { HomeComponent } from './components/main/home/home.component';
 import { CharactersComponent } from './components/main/characters/characters.component';
 import { AboutComponent } from './components/main/about/about.component';
 import { DetailsComponent } from './components/main/details/details.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { EditCharacterComponent } from './components/main/edit-character/edit-character.component';
 import { CreateCharacterComponent } from './components/main/create-character/create-character.component';
@@ -33,6 +33,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth())
