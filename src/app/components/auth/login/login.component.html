@@ -1,16 +1,17 @@
 <div class="container my-5">
     <h1 class="my-5">Login</h1>
-    <div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control bg-dark text-white" id="email" [(ngModel)]="email">
-            <div class="form-text" *ngIf="email == ''">Porfavor ingrese un email</div>
+            <input type="email" class="form-control bg-dark text-white" id="email" formControlName="email">
+            <div class="form-text" *ngIf="loginForm.get('email')?.invalid">Porfavor ingrese un email</div>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control bg-dark text-white" id="password" [(ngModel)]="password">
-            <div class="form-text" *ngIf="password == ''">Porfavor ingrese una contraseña</div>
+            <input type="password" class="form-control bg-dark text-white" id="password" formControlName="password">
+            <div class="form-text" *ngIf="loginForm.get('password')?.invalid">Porfavor ingrese una contraseña</div>
         </div>
-        <button type="submit" class="btn btn-dark my-3" (click)="login()">Login</button>
-    </div>
+        <input type="submit" class="btn btn-dark my-3" value="Login">
+    </form>
+    <button type="button" class="btn btn-secondary" (click)="loginWithGoogle()">Login With Google</button>
 </div>

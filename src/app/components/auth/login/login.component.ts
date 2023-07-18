@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -7,17 +10,34 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
-  email: string = '';
-  password: string = '';
+  loginForm: FormGroup;
+
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private formBuilder: FormBuilder
+    ) {
+    
+      this.loginForm = this.formBuilder.group({
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', Validators.required]
+      });
+
+  }
 
   login(): void {
+    this.authService.login(this.loginForm.value)
+    .then(response => {
+      this.router.navigate(['']);
+    })
+    .catch(error => console.log(error));
+  }
 
-    if (this.email == '' || this.password == '') {
-      alert('Porfavor complete todos los campos.');
-
-    } else {
-      this.email = '';
-      this.password = '';
-    }
+  loginWithGoogle(): void {
+    this.authService.loginWithGoogle()
+    .then(response => {
+      this.router.navigate(['']);
+    })
+    .catch(error => console.log(error));
   }
 }
