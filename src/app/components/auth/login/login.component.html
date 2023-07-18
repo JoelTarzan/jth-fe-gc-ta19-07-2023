@@ -13,5 +13,8 @@
         </div>
         <input type="submit" class="btn btn-dark my-3" value="Login">
     </form>
-    <button type="button" class="btn btn-secondary" (click)="loginWithGoogle()">Login With Google</button>
+    <div class="d-flex justify-content-between">
+        <button type="button" class="btn btn-secondary" (click)="loginWithGoogle()">Login With Google</button>
+        <a class="link-opacity-100" routerLink="/register">You don't have an account? Sign up here!</a>
+    </div>
 </div>

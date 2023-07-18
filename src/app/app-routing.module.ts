@@ -7,6 +7,7 @@ import { CharactersComponent } from './components/main/characters/characters.com
 import { AboutComponent } from './components/main/about/about.component';
 import { DetailsComponent } from './components/main/details/details.component';
 import { CreateCharacterComponent } from './components/main/create-character/create-character.component';
+import { canActivate, redirectUnauthorizedTo } from '@angular/fire/auth-guard';
 
 const routes: Routes = [
   {
@@ -19,23 +20,38 @@ const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'characters',
-    component: CharactersComponent
+    component: CharactersComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'about',
-    component: AboutComponent
+    component: AboutComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'details/:id',
-    component: DetailsComponent
+    component: DetailsComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   },
   {
     path: 'create',
-    component: CreateCharacterComponent
+    component: CreateCharacterComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
+  },
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: ''
+  },
+  {
+    path: '**',
+    component: HomeComponent,
+    ...canActivate(() => redirectUnauthorizedTo(['/login']))
   }
 ];
 
